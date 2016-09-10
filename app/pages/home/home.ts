@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {Page, NavController} from 'ionic-angular';
 import { BluetoothSerial } from 'ionic-native';
+import {UsersPage} from '../users/users';
 
-@Component({
+@Page({
   templateUrl: 'build/pages/home/home.html'
 })
 export class HomePage {
@@ -18,6 +18,10 @@ export class HomePage {
     this.state = this.state == 0 ? 1 : 0;
     //this.serial.write(this.state);
     console.log('toggleLED : '+this.state);
+  }
+
+  users(){
+      this.navCtrl.push(UsersPage);
   }
 
 }
