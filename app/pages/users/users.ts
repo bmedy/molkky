@@ -1,20 +1,18 @@
 import {Page, NavController} from 'ionic-angular';
 import {AddPage} from "../add/add";
+import {MolkkyPage} from "../molkky/molkky";
 
 @Page({
     templateUrl: 'build/pages/users/users.html'
 })
 export class UsersPage {
 
-    public userList: Array<string>;
+    public userList: Array<string> = [];
 
     constructor(private nav: NavController) { }
 
     onPageDidEnter() {
         this.userList = JSON.parse(localStorage.getItem("users"));
-        if(!this.userList) {
-            this.userList= [];
-        }
     }
 
     delete(index: number) {
@@ -23,7 +21,7 @@ export class UsersPage {
     }
 
     start() {
-        this.nav.push(AddPage);
+        this.nav.push(MolkkyPage);
     }
 
     add() {

@@ -7,9 +7,14 @@
 <ion-content padding class="home">
 
   <button (click)="users()">new game</button>
+  
+  <hr />
 
   <button (click)="toggleLED($event)">click</button>
+  <p>state:{{state}}</p>
+  
+  <hr />
 
-  state:{{state}}
-  serial:{{serial|json}}
+  <p>serial:{{serial|json}}</p>
+    
 </ion-content>

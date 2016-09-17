@@ -1,0 +1,40 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Game</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-row no-padding>
+        <ion-col *ngFor="let user of userList; let i = index" [ngStyle]="{'font-weight': currentPlayer === i ? 'bold' : 'inherit'}">
+            <div class="text-center">{{user.score}}</div>
+            <ion-note>{{user.username}}</ion-note> <ion-icon *ngFor="let i of getFail(user.fail)" name="close"></ion-icon> 
+        </ion-col>
+    </ion-row>
+    
+   
+    <ion-list *ngIf="gameInProgress()">
+        <ion-item-sliding *ngFor="let skittle of skittles; let i = index" #item>
+            <ion-item [ngStyle]="{'color': skittle.state ? 'red' : 'green'}">
+                <h2>{{ skittle.name }} {{skittle.state}}</h2>
+            </ion-item>
+            
+            <ion-item-options (ionSwipe)="up(item, skittle)" side="left">
+                <button success (click)="skittle.state = false;">
+                  <ion-icon name="checkmark"></ion-icon>
+              </button>
+            </ion-item-options>
+            
+            <ion-item-options (ionSwipe)="down(item, skittle)">
+                <button danger (click)="skittle.state = true;">
+                  <ion-icon name="trash"></ion-icon>
+              </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <button (click)="startGame()" *ngIf="!gameInProgress()">start</button>
+</ion-content>
+<ion-footer>
+    <button fab fab-bottom fab-right class="fab-footer" (click)="done()" *ngIf="gameInProgress()"><ion-icon name="checkmark"></ion-icon></button>
+</ion-footer>

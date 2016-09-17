@@ -2,7 +2,7 @@
     <ion-navbar>
         <ion-title>Users</ion-title>
         <ion-buttons end>
-            <button (click)="start()"><ion-icon name="checkmark"></ion-icon></button>
+            <button (click)="add()" *ngIf="userList.length < 4"><ion-icon name="add"></ion-icon></button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
@@ -20,8 +20,8 @@
                 </button>
             </ion-item-options>
         </ion-item-sliding>
-        <ion-item>
-          <button (click)="add()"><ion-icon name="add"></ion-icon></button>
-        </ion-item>
     </ion-list>
 </ion-content>
+<ion-footer>
+    <button fab fab-bottom fab-right class="fab-footer" (click)="start()"><ion-icon name="checkmark"></ion-icon></button>
+</ion-footer>
