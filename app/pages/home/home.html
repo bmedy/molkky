@@ -9,12 +9,18 @@
   <button (click)="users()">new game</button>
   
   <hr />
-
-  <button (click)="toggleLED($event)">click</button>
-  <p>state:{{state}}</p>
+  
+  <ion-item>
+    <ion-label floating>color</ion-label>
+    <ion-input type="text" [(ngModel)]="state"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <button (click)="send($event)">send</button>
+  </ion-item>
   
   <hr />
 
-  <p>serial:{{serial|json}}</p>
+  <p>availableDevice:{{availableDevice|json}}</p>
     
 </ion-content>
