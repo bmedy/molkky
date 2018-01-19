@@ -9,18 +9,34 @@
   <button (click)="users()">new game</button>
   
   <hr />
-  
-  <ion-item>
-    <ion-label floating>color</ion-label>
-    <ion-input type="text" [(ngModel)]="state"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <button (click)="send($event)">send</button>
-  </ion-item>
-  
-  <hr />
 
-  <p>availableDevice:{{availableDevice|json}}</p>
+  <div *ngIf="connected">
+    <ion-item>
+      <ion-label floating>color</ion-label>
+      <ion-input type="text" [(ngModel)]="state"></ion-input>
+    </ion-item>
     
+    <ion-item>
+      <button (click)="send($event)">send</button>
+    </ion-item>
+    
+    <hr />
+  </div>
+  <ion-list>
+    <ion-item *ngIf="isScanning">
+      scanning
+    </ion-item>
+    <ion-item *ngFor="let device of devices; let i = index">
+      <h2>{{ device.name }}</h2>
+      <button default (click)="connect(device.id)">
+          <ion-icon name="add"></ion-icon>
+          add
+      </button>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let log of logs; let i = index">
+      <pre>{{log | json}}</pre>
+    </ion-item>
+  </ion-list>
 </ion-content>
